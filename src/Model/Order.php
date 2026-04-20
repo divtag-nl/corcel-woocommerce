@@ -144,6 +144,16 @@ class Order extends Post
     }
 
     /**
+     * Get the customer attribute.
+     */
+    public function getCustomerIdAttribute(): mixed
+    {
+        $customerId = $this->getMeta('_customer_user');
+
+        return is_numeric($customerId) ? (int) $customerId : $customerId;
+    }
+
+    /**
      * Get the status attribute.
      */
     public function getStatusAttribute(): string
