@@ -86,6 +86,16 @@ class Order extends Post
     }
 
     /**
+     * Get the customer attribute.
+     */
+    public function getCustomerIdAttribute(): mixed
+    {
+        $customerId = $this->getMeta('_customer_user');
+
+        return is_numeric($customerId) ? (int) $customerId : $customerId;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function newEloquentBuilder($builder): OrderBuilder
@@ -141,16 +151,6 @@ class Order extends Post
         $shippingTax = $this->getMeta('_order_shipping_tax');
 
         return is_scalar($shippingTax) ? (string) $shippingTax : null;
-    }
-
-    /**
-     * Get the customer attribute.
-     */
-    public function getCustomerIdAttribute(): mixed
-    {
-        $customerId = $this->getMeta('_customer_user');
-
-        return is_numeric($customerId) ? (int) $customerId : $customerId;
     }
 
     /**

@@ -100,6 +100,26 @@ class Item extends Model
     }
 
     /**
+     * Get the product attribute.
+     */
+    public function getProductIdAttribute(): mixed
+    {
+        $productId = $this->getMeta('_product_id');
+
+        return is_numeric($productId) ? (int) $productId : $productId;
+    }
+
+    /**
+     * Get the variation attribute.
+     */
+    public function getVariationIdAttribute(): mixed
+    {
+        $variationId = $this->getMeta('_variation_id');
+
+        return is_numeric($variationId) ? (int) $variationId : $variationId;
+    }
+
+    /**
      * Get the line subtotal attribute.
      */
     protected function getLineSubtotalAttribute(): ?string
